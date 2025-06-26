@@ -33,7 +33,7 @@ export const useForecast = (address: string, units: 'us' | 'si' = 'si') => {
       const geoRes = await fetch(`/api/geocode?address=${encodeURIComponent(address)}`);
       if (!geoRes.ok) throw new Error('Geocoding failed');
       const { result } = await geoRes.json();
-      const coords = result.addressMatches[0]?.coordinates;
+      const coords = result?.addressMatches[0]?.coordinates;
       if (!coords) throw new Error('No coordinates found');
 
       // Use coordinates to get weather points
