@@ -48,7 +48,7 @@ export default function WeatherApp() {
   }, [forecast?.address]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white flex flex-col">
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 py-6">
@@ -57,7 +57,7 @@ export default function WeatherApp() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-4 py-8">
+      <main className="w-full max-w-6xl mx-auto px-4 py-8 flex-1">
         <div className="flex items-center gap-4 mb-12">
           <SearchBar
             value={address}
@@ -151,6 +151,30 @@ export default function WeatherApp() {
           </div>
         )}
       </main>
+      {/* add footer with link to the repository and my linkedin */}
+      <footer className="mt-1 border-t border-slate-200 py-6 text-center text-sm text-slate-600 dark:text-slate-400 bg-slate-600">
+        <p>
+          Built with ❤️ by{' '}
+          <a
+            href="https://www.linkedin.com/in/camilo-jose-mujica/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-indigo-600 hover:underline"
+          >
+            Camilo Mujica
+          </a>
+          . View the code on{' '}
+          <a
+            href="https://github.com/camilo-mujica/weather-wise"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-indigo-600 hover:underline"
+          >
+            GitHub
+          </a>
+          .
+        </p>
+      </footer>
     </div>
   );
 }
