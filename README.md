@@ -1,5 +1,7 @@
 # Weather Wise
 
+[Live Demo](https://weatherwise.camilomujica.one/)
+
 This project is a weather forecast application built with Next.js (App Router) and TypeScript. It allows users to search for any address, geocodes it using the US Census Geocoding API, and displays a 7-day weather forecast using the US National Weather Service API.
 
 ## Features
