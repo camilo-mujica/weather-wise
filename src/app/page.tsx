@@ -8,6 +8,16 @@ import WeatherCard from './components/WeatherCard';
 import { useDebouncedValue } from './hooks/useDebouncedValue';
 import { Period, useForecast } from './hooks/useForecast';
 import SearchBar from './components/SearchBar';
+import AddressButtonTag from './components/AddressButtonTag';
+
+// Default addresses to show in the empty state
+const defaultAddresses = [
+  '1600 Amphitheatre Parkway, Mountain View, CA',
+  '350 Fifth Avenue, New York, NY',
+  '221B Baker Street, London, UK',
+  '200 Santa Monica Pier, Santa Monica, CA 90401',
+  '600 Congress Ave, Austin, TX 78701',
+];
 
 export default function WeatherApp() {
   const [address, setAddress] = useState('');
@@ -46,6 +56,12 @@ export default function WeatherApp() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forecast?.address]);
+
+  const handleRemoveFromHistory = (addr: string) => {
+    const updatedHistory = addressHistory.filter((item) => item !== addr);
+    setAddressHistory(updatedHistory);
+    localStorage.setItem('addressHistory', JSON.stringify(updatedHistory));
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white flex flex-col">
@@ -111,23 +127,33 @@ export default function WeatherApp() {
             <p className="text-slate-600 max-w-md mx-auto">
               Enter your address or city name above to get a detailed 7-day weather forecast
             </p>
-            {addressHistory.length > 0 && (
-              <div className="mt-8">
-                <h4 className="text-lg font-semibold text-slate-800 mb-3">Recent Searches</h4>
-                <ul className="flex flex-wrap gap-2">
-                  {addressHistory.map((addr, idx) => (
-                    <li key={idx}>
-                      <button
-                        onClick={() => setAddress(addr)}
-                        className="px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 rounded-full text-sm transition shadow-sm cursor-pointer"
-                      >
-                        {addr}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <div className="mt-8">
+              <h4 className="text-lg font-semibold text-slate-800 mb-3">
+                {addressHistory.length ? 'Recent Searches' : 'Try it out! Here are some examples:'}
+              </h4>
+              <ul className="flex flex-wrap gap-2">
+                {addressHistory.length
+                  ? addressHistory.map((addr, idx) => (
+                      <li key={`address-${idx}`}>
+                        <AddressButtonTag
+                          addr={addr}
+                          setAddress={setAddress}
+                          handleRemoveFromHistory={handleRemoveFromHistory}
+                        />
+                      </li>
+                    ))
+                  : defaultAddresses.map((addr, idx) => (
+                      <li key={idx}>
+                        <AddressButtonTag
+                          addr={addr}
+                          setAddress={setAddress}
+                          handleRemoveFromHistory={handleRemoveFromHistory}
+                          showRemoveButton={false} // Hide remove button for default addresses
+                        />
+                      </li>
+                    ))}
+              </ul>
+            </div>
           </div>
         )}
 
