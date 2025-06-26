@@ -14,9 +14,9 @@ import AddressButtonTag from './components/AddressButtonTag';
 const defaultAddresses = [
   '1600 Amphitheatre Parkway, Mountain View, CA',
   '350 Fifth Avenue, New York, NY',
-  '221B Baker Street, London, UK',
   '200 Santa Monica Pier, Santa Monica, CA 90401',
   '600 Congress Ave, Austin, TX 78701',
+  '3799 S Las Vegas Blvd, Las Vegas, NV 89109',
 ];
 
 export default function WeatherApp() {
@@ -129,7 +129,9 @@ export default function WeatherApp() {
             </p>
             <div className="mt-8">
               <h4 className="text-lg font-semibold text-slate-800 mb-3">
-                {addressHistory.length ? 'Recent Searches' : 'Try it out! Here are some examples:'}
+                {addressHistory.length
+                  ? 'Recent Searches'
+                  : 'Not sure what to search? Try one of these:'}
               </h4>
               <ul className="flex flex-wrap gap-2">
                 {addressHistory.length
