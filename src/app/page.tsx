@@ -159,7 +159,7 @@ export default function WeatherApp() {
             href="https://www.linkedin.com/in/camilo-jose-mujica/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-indigo-600 hover:underline"
+            className="text-indigo-200 hover:underline"
           >
             Camilo Mujica
           </a>
@@ -168,7 +168,7 @@ export default function WeatherApp() {
             href="https://github.com/camilo-mujica/weather-wise"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-indigo-600 hover:underline"
+            className="text-indigo-200 hover:underline"
           >
             GitHub
           </a>
